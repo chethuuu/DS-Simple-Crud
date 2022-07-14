@@ -24,6 +24,13 @@ router.get('/api/items', async(req,res) => {
     }
 })
 
+router.get('/api/item/:id', (req, res) => {
+    let id = req.params.id;
+    todoItemModel.findById(id, function (err, user) {
+        res.json(user);
+    });
+})
+
 router.put('/api/item/:id', async(req,res) => {
     try {
         const updateItem = await todoItemModel.findByIdAndUpdate(req.params.id,{$set: req.body});
